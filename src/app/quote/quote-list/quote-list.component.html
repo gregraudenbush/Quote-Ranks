@@ -1,0 +1,13 @@
+<div *ngFor="let quote of myQuotes">
+  
+    <div *ngIf="quote != undefined">
+      <div class="quotes" >  
+        {{ quote.text }} <br>
+        <p>{{ quote.author}} </p>
+        <p>      +{{quote.vote}}</p> 
+        <button (click)="VoteParentUp(myQuotes.indexOf(quote))" style="background-color: green">Vote Up</button>
+        <button (click)="VoteParentDown(myQuotes.indexOf(quote))" style="background-color: red">Vote Down</button>
+        <button  (click)="delete(myQuotes.indexOf(quote))" style="background-color: black; color: white">Delete</button>
+      </div>
+    </div>
+</div>

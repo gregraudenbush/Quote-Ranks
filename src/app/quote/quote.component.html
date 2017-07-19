@@ -1,0 +1,41 @@
+<h1>Add a Quote</h1>
+{{ message }}
+<div class="form">
+  
+
+  <form (submit)="onSubmit()" style="float: right">
+    
+    <textarea name="text" rows="4" cols="70"
+    required
+    [(ngModel)] = 'quote.text'
+    #text="ngModel"
+    ></textarea> 
+    <div *ngIf="text.errors && (text.dirty || text.touched)"
+          class="err">
+          <div  [hidden]="!text.errors.required" style="color: red">
+            Quote is required
+          </div>
+          
+        </div>
+    <br>
+
+
+    <input type="text" name="author"
+    required
+    [(ngModel)] = 'quote.author'
+    #author="ngModel"
+    > <br>
+    <div *ngIf="author.errors && (author.dirty || author.touched)"
+          class="err">
+          <div  [hidden]="!author.errors.required" style="color: red">
+            Author is required
+          </div>
+          
+        </div>
+    <input type="hidden" name="vote" value="0" [(ngModel)] = 'quote.vote' #vote='ngModel'>
+    <input type="submit" value="add quote">
+  </form>
+
+</div>
+{{ quotes }}
+<app-quote-list [myQuotes]="quotes" (VoteEventUp)="voteUp()" ></app-quote-list>
